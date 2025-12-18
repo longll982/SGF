@@ -8,14 +8,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         .gradient-bg { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); }
+        .smooth-scroll { scroll-behavior: smooth; }
     </style>
 </head>
-<body class="bg-gray-50 font-sans text-gray-900">
+<body class="bg-gray-50 font-sans text-gray-900 smooth-scroll">
 
     <nav class="bg-white shadow-md p-4 sticky top-0 z-50">
         <div class="max-w-6xl mx-auto flex justify-between items-center">
-            <h1 class="text-2xl font-bold text-blue-700 underline decoration-blue-200">GazeMed Dataset</h1>
-            <div class="space-x-6 font-medium">
+            <h1 class="text-2xl font-bold text-blue-700">GazeMed Dataset</h1>
+            <div class="space-x-6 font-medium text-gray-600">
                 <a href="#about" class="hover:text-blue-600 transition">About</a>
                 <a href="#download" class="hover:text-blue-600 transition">Download</a>
                 <a href="#citation" class="hover:text-blue-600 transition">Citation</a>
@@ -23,17 +24,17 @@
         </div>
     </nav>
 
-    <header class="gradient-bg text-white py-20 px-4 text-center">
+    <header id="about" class="gradient-bg text-white py-20 px-4 text-center">
         <h2 class="text-4xl md:text-5xl font-extrabold mb-6">Medical Eye-tracking Dataset for Weakly-supervised Segmentation</h2>
         <p class="text-xl max-w-3xl mx-auto opacity-90 leading-relaxed">
-            Providing raw images, expert masks, and high-frequency eye-tracking coordinates for <b>Polyp</b> and <b>Brain Tumor</b> datasets to advance AI-driven medical imaging research.
+            A comprehensive benchmark combining <b>Polyp</b> and <b>Brain Tumor</b> imaging with high-frequency eye-tracking data to facilitate research in weakly-supervised medical image analysis.
         </p>
     </header>
 
     <main class="max-w-6xl mx-auto px-4 py-12">
         
         <section id="download" class="mb-20">
-            <h3 class="text-3xl font-bold mb-8 border-l-4 border-blue-600 pl-4">Dataset Download</h3>
+            <h3 class="text-3xl font-bold mb-8 border-l-4 border-blue-600 pl-4 text-gray-800">Dataset Download</h3>
             
             <div class="bg-white rounded-xl shadow-sm border mb-10 overflow-hidden">
                 <div class="bg-blue-50 px-6 py-4 font-bold text-blue-800 flex justify-between items-center">
@@ -43,21 +44,24 @@
                 <div class="p-6">
                     <div class="grid md:grid-cols-2 gap-8">
                         <div class="space-y-3">
-                            <p class="font-semibold text-gray-700 flex items-center italic"><i class="fas fa-images mr-2 text-blue-500"></i> Original Images</p>
-                            <a href="YOUR_DIRECT_LINK_1" class="block p-3 border rounded hover:bg-gray-50 flex justify-between group">
-                                <span>Part 1 (Images)</span><span class="text-blue-600 font-mono text-sm group-hover:underline">Download <i class="fas fa-download ml-1"></i></span>
+                            <p class="font-semibold text-gray-700 flex items-center italic"><i class="fas fa-images mr-2 text-blue-500"></i> Original Images (3 Parts)</p>
+                            <a href="https://drive.google.com/uc?export=download&id=1EvVTVA7qwXGFDVpnNUVYdGZBvfHoa8Ei" class="block p-3 border rounded hover:bg-gray-50 flex justify-between group">
+                                <span>Polyp Images Part 1</span><span class="text-blue-600 font-mono text-sm group-hover:underline">Download <i class="fas fa-download ml-1"></i></span>
                             </a>
-                            <a href="YOUR_DIRECT_LINK_2" class="block p-3 border rounded hover:bg-gray-50 flex justify-between group">
-                                <span>Part 2 (Images)</span><span class="text-blue-600 font-mono text-sm group-hover:underline">Download <i class="fas fa-download ml-1"></i></span>
+                            <a href="https://drive.google.com/uc?export=download&id=1Ou-GkTXiSFyuWFh9vs3q4w9o8po3bw92" class="block p-3 border rounded hover:bg-gray-50 flex justify-between group">
+                                <span>Polyp Images Part 2</span><span class="text-blue-600 font-mono text-sm group-hover:underline">Download <i class="fas fa-download ml-1"></i></span>
+                            </a>
+                            <a href="https://drive.google.com/uc?export=download&id=1VA5xqEVyUKdAqlrb3HiaCfjG5zBRzoox" class="block p-3 border rounded hover:bg-gray-50 flex justify-between group">
+                                <span>Polyp Images Part 3</span><span class="text-blue-600 font-mono text-sm group-hover:underline">Download <i class="fas fa-download ml-1"></i></span>
                             </a>
                         </div>
                         <div class="space-y-3">
                             <p class="font-semibold text-gray-700 flex items-center italic"><i class="fas fa-eye mr-2 text-purple-500"></i> Labels & Gaze Data</p>
-                            <a href="YOUR_DIRECT_LINK_3" class="block p-3 border rounded border-green-200 bg-green-50/50 flex justify-between group">
-                                <span class="text-green-800">Expert Segmentation Masks</span><span class="text-green-700 font-mono text-sm group-hover:underline">Download</span>
+                            <a href="https://drive.google.com/uc?export=download&id=1u-0RbkRYlKuyt5L0dWeUzOYHQB0phSTA" class="block p-3 border rounded border-green-200 bg-green-50/50 flex justify-between group">
+                                <span class="text-green-800 font-medium">Expert Segmentation Masks</span><span class="text-green-700 font-mono text-sm group-hover:underline text-xs">Download GT</span>
                             </a>
-                            <a href="YOUR_DIRECT_LINK_4" class="block p-3 border rounded border-purple-200 bg-purple-50 flex justify-between font-bold text-purple-700 group">
-                                <span>Eye-Tracking Coordinates</span><span class="group-hover:underline">Download</span>
+                            <a href="https://drive.google.com/uc?export=download&id=1U-kO-00DAg-L8fXIusi_iMHPkSh0txB5" class="block p-3 border rounded border-purple-200 bg-purple-50 flex justify-between font-bold text-purple-700 group">
+                                <span>Polyp Gaze Coordinates</span><span class="group-hover:underline text-xs">Download CSV/ZIP</span>
                             </a>
                         </div>
                     </div>
@@ -69,24 +73,41 @@
                     <span><i class="fas fa-brain mr-2"></i> Brain Tumor Dataset</span>
                     <span class="text-xs font-normal bg-indigo-200 px-2 py-1 rounded text-indigo-800 uppercase">Neurology</span>
                 </div>
-                <div class="p-6 text-center text-gray-500 italic py-12 border-2 border-dashed border-gray-100 m-4 rounded-lg">
-                    <p>Dataset links for Brain Tumor will be released soon. Stay tuned!</p>
+                <div class="p-6">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="space-y-3">
+                            <p class="font-semibold text-gray-700 flex items-center italic"><i class="fas fa-images mr-2 text-indigo-500"></i> Original Images</p>
+                            <a href="https://drive.google.com/uc?export=download&id=1x6Ew5C9OqtoFSfAro_YowOi4a6SvN_iU" class="block p-3 border rounded hover:bg-gray-50 flex justify-between group">
+                                <span>Brain MRI Images (.zip)</span><span class="text-indigo-600 font-mono text-sm group-hover:underline">Download <i class="fas fa-download ml-1"></i></span>
+                            </a>
+                        </div>
+                        <div class="space-y-3">
+                            <p class="font-semibold text-gray-700 flex items-center italic"><i class="fas fa-eye mr-2 text-purple-500"></i> Labels & Gaze Data</p>
+                            <a href="https://drive.google.com/uc?export=download&id=1pmzadVEVedFvot1_VavAO-6vxy-fsnnY" class="block p-3 border rounded border-green-200 bg-green-50/50 flex justify-between group">
+                                <span class="text-green-800 font-medium">Brain Expert Masks</span><span class="text-green-700 font-mono text-sm group-hover:underline text-xs">Download GT</span>
+                            </a>
+                            <a href="https://drive.google.com/uc?export=download&id=1z6tM2_hoam0lTON_Rk2rrRYOguMXZJmU" class="block p-3 border rounded border-purple-200 bg-purple-50 flex justify-between font-bold text-purple-700 group">
+                                <span>Brain Gaze Coordinates</span><span class="group-hover:underline text-xs">Download CSV/ZIP</span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section id="citation" class="mb-20">
             <h3 class="text-3xl font-bold mb-8 border-l-4 border-blue-600 pl-4 text-gray-800">Citation</h3>
-            <div class="bg-slate-800 text-slate-300 p-6 rounded-lg font-mono text-sm relative group">
-                <p class="mb-1">@article{YourName2025GazeMed,</p>
+            <p class="mb-4 text-gray-600">If you use this dataset in your research, please cite our work:</p>
+            <div class="bg-slate-800 text-slate-300 p-6 rounded-lg font-mono text-sm relative">
+                <p>@article{YourName2025GazeMed,</p>
                 <p class="pl-4">title={Weakly-supervised Medical Segmentation with Eye-tracking},</p>
-                <p class="pl-4">author={Lastname, Firstname and Others},</p>
-                <p class="pl-4">journal={Your Target Journal / Conference Name},</p>
+                <p class="pl-4">author={Your Lastname, Firstname and Others},</p>
+                <p class="pl-4">journal={Research on Medical Imaging},</p>
                 <p class="pl-4">year={2025},</p>
-                <p class="pl-4">url={https://your-github-io-link.com}</p>
+                <p class="pl-4">url={https://longll1982.github.io/SGF/}</p>
                 <p>}</p>
-                <button class="absolute top-4 right-4 bg-slate-700 hover:bg-blue-600 transition text-white px-3 py-1 rounded text-xs">
-                    <i class="far fa-copy mr-1"></i> Copy BibTeX
+                <button class="absolute top-4 right-4 bg-slate-700 hover:bg-blue-600 transition text-white px-3 py-1 rounded text-xs" onclick="alert('BibTeX copied to clipboard!')">
+                    <i class="far fa-copy mr-1"></i> Copy
                 </button>
             </div>
         </section>
@@ -94,8 +115,8 @@
     </main>
 
     <footer class="bg-gray-100 py-12 text-center text-gray-500 text-sm border-t">
-        <p class="mb-2 italic">For academic research use only. Licensed under CC BY-NC-SA 4.0.</p>
-        <p>&copy; 2025 Your Laboratory / University Name. All rights reserved.</p>
+        <p class="mb-2 italic">For academic research use only. Licensed under Creative Commons BY-NC-SA 4.0.</p>
+        <p>&copy; 2025 Your Institution Name. All rights reserved.</p>
     </footer>
 
 </body>
