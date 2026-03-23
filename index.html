@@ -260,20 +260,22 @@
             box-shadow: 0 16px 32px rgba(15, 23, 42, 0.08);
         }
 
-        .ref-index {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-width: 3rem;
-            height: 2rem;
-            padding: 0 0.8rem;
-            border-radius: 999px;
-            background: #eff6ff;
-            color: #1d4ed8;
-            font-size: 0.85rem;
-            font-weight: 800;
-            border: 1px solid #dbeafe;
+       .ref-index {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 2rem;
+        padding: 0.45rem 0.9rem;
+        border-radius: 999px;
+        background: #eff6ff;
+        color: #1d4ed8;
+        font-size: 0.82rem;
+        font-weight: 800;
+        border: 1px solid #dbeafe;
+        letter-spacing: 0.01em;
+        white-space: normal;
         }
+
 
         .reference-text {
             margin-top: 0.9rem;
@@ -789,82 +791,84 @@
         </section>
 
         <section id="references" class="section-anchor py-20">
-            <div class="max-w-7xl mx-auto px-6">
-                <div class="eyebrow">
-                    <i class="fa-solid fa-book"></i>
-                    References
-                </div>
-                <h2 class="section-title mt-5">
-                    Dataset-source references aligned with the benchmark composition
-                </h2>
-                <p class="section-intro">
-                    The following references correspond to the public and institutional imaging sources used to assemble the two benchmark tasks described on this page. For a project homepage in medical AI, presenting these citations as structured text is more appropriate than embedding them as screenshots.
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="eyebrow">
+            <i class="fa-solid fa-book"></i>
+            References
+        </div>
+        <h2 class="section-title mt-5">
+            Dataset-source references aligned with the benchmark composition
+        </h2>
+        <p class="section-intro">
+            The following references correspond directly to the source datasets and imaging resources used to construct the two benchmark branches presented on this page. To preserve a clean academic project-page style, the entries are organized by dataset name rather than citation index.
+        </p>
+
+        <div class="mt-10 grid gap-5">
+
+            <article class="reference-card">
+                <span class="ref-index">CVC-ClinicDB</span>
+                <p class="reference-text">
+                    J. Bernal, F. J. Sánchez, G. Fernández-Esparrach, D. Gil, C. R. de Miguel, and F. Vilariño,
+                    “WM-DOVA maps for accurate polyp highlighting in colonoscopy: Validation vs. saliency maps from physicians,”
+                    <em>Computerized Medical Imaging and Graphics</em>, vol. 43, pp. 99–111, 2015.
                 </p>
+            </article>
 
-                <div class="mt-10 grid gap-5">
-                    <article class="reference-card">
-                        <span class="ref-index">[46]</span>
-                        <p class="reference-text">
-                            J. Bernal, F. J. Sánchez, G. Fernández-Esparrach, D. Gil, C. R. de Miguel, and F. Vilariño,
-                            “WM-DOVA maps for accurate polyp highlighting in colonoscopy: Validation vs. saliency maps from physicians,”
-                            <em>Computerized Medical Imaging and Graphics</em>, vol. 43, pp. 99–111, 2015.
-                        </p>
-                    </article>
-
-                    <article class="reference-card">
-                        <span class="ref-index">[47]</span>
-                        <p class="reference-text">
-                            N. Tajbakhsh, S. R. Gurudu, and J. Liang,
-                            “Automated polyp detection in colonoscopy videos using shape and context information,”
-                            <em>IEEE Transactions on Medical Imaging</em>, vol. 35, no. 2, pp. 630–644, 2016.
-                        </p>
-                    </article>
-
-                    <article class="reference-card">
-                        <span class="ref-index">[48]</span>
-                        <p class="reference-text">
-                            J. Silva, A. Histace, O. Romain, X. Dray, and B. Granado,
-                            “Toward embedded detection of polyps in WCE images for early diagnosis of colorectal cancer,”
-                            <em>International Journal of Computer Assisted Radiology and Surgery</em>, vol. 9, no. 2, pp. 283–293, 2014.
-                        </p>
-                    </article>
-
-                    <article class="reference-card">
-                        <span class="ref-index">[49]</span>
-                        <p class="reference-text">
-                            D. Jha, P. H. Smedsrud, M. A. Riegler, P. Halvorsen, T. de Lange, D. Johansen, and H. D. Johansen,
-                            “Kvasir-SEG: A segmented polyp dataset,” in
-                            <em>Multimedia Modeling: 26th International Conference, MMM 2020, Daejeon, South Korea, January 5–8, 2020, Proceedings, Part II</em>,
-                            ser. Lecture Notes in Computer Science, vol. 11962. Springer, 2020, pp. 451–462.
-                        </p>
-                    </article>
-
-                    <article class="reference-card">
-                        <span class="ref-index">[50]</span>
-                        <p class="reference-text">
-                            S. Ali, D. Jha, N. M. Ghatwary, S. Realdon, R. Cannizzaro, O. E. Salem, D. Lamarque, C. Daul, K. V. Anonsen,
-                            M. A. Riegler, P. Halvorsen, J. Rittscher, T. de Lange, and J. E. East,
-                            “PolypGen: A multi-center polyp detection and segmentation dataset for generalisability assessment,”
-                            <em>CoRR</em>, vol. abs/2106.04463, 2021.
-                        </p>
-                    </article>
-
-                    <article class="reference-card">
-                        <span class="ref-index">[51]</span>
-                        <p class="reference-text">
-                            J. Cheng, W. Huang, S. Cao, R. Yang, W. Yang, Z. Yun, Z. Wang, and Q. Feng,
-                            “Correction: Enhanced performance of brain tumor classification via tumor region augmentation and partition,”
-                            <em>PLOS ONE</em>, vol. 10, 2015. [Online]. Available:
-                            https://api.semanticscholar.org/CorpusID:20788233
-                        </p>
-                    </article>
-                </div>
-
-                <p class="reference-note">
-                    You can later expand this section into a full paper-style citation block by adding your own manuscript citation, BibTeX entry, DOI, project links, or a separate “Paper” section above the footer.
+            <article class="reference-card">
+                <span class="ref-index">CVC-ColonDB</span>
+                <p class="reference-text">
+                    N. Tajbakhsh, S. R. Gurudu, and J. Liang,
+                    “Automated polyp detection in colonoscopy videos using shape and context information,”
+                    <em>IEEE Transactions on Medical Imaging</em>, vol. 35, no. 2, pp. 630–644, 2016.
                 </p>
-            </div>
-        </section>
+            </article>
+
+            <article class="reference-card">
+                <span class="ref-index">ETIS-LaribPolypDB</span>
+                <p class="reference-text">
+                    J. Silva, A. Histace, O. Romain, X. Dray, and B. Granado,
+                    “Toward embedded detection of polyps in WCE images for early diagnosis of colorectal cancer,”
+                    <em>International Journal of Computer Assisted Radiology and Surgery</em>, vol. 9, no. 2, pp. 283–293, 2014.
+                </p>
+            </article>
+
+            <article class="reference-card">
+                <span class="ref-index">Kvasir-SEG</span>
+                <p class="reference-text">
+                    D. Jha, P. H. Smedsrud, M. A. Riegler, P. Halvorsen, T. de Lange, D. Johansen, and H. D. Johansen,
+                    “Kvasir-SEG: A segmented polyp dataset,” in
+                    <em>Multimedia Modeling: 26th International Conference, MMM 2020, Daejeon, South Korea, January 5–8, 2020, Proceedings, Part II</em>,
+                    ser. Lecture Notes in Computer Science, vol. 11962. Springer, 2020, pp. 451–462.
+                </p>
+            </article>
+
+            <article class="reference-card">
+                <span class="ref-index">PolypGen</span>
+                <p class="reference-text">
+                    S. Ali, D. Jha, N. M. Ghatwary, S. Realdon, R. Cannizzaro, O. E. Salem, D. Lamarque, C. Daul, K. V. Anonsen,
+                    M. A. Riegler, P. Halvorsen, J. Rittscher, T. de Lange, and J. E. East,
+                    “PolypGen: A multi-center polyp detection and segmentation dataset for generalisability assessment,”
+                    <em>CoRR</em>, vol. abs/2106.04463, 2021.
+                </p>
+            </article>
+
+            <article class="reference-card">
+                <span class="ref-index">T1-CE-MRI Brain Tumor Dataset</span>
+                <p class="reference-text">
+                    J. Cheng, W. Huang, S. Cao, R. Yang, W. Yang, Z. Yun, Z. Wang, and Q. Feng,
+                    “Correction: Enhanced performance of brain tumor classification via tumor region augmentation and partition,”
+                    <em>PLOS ONE</em>, vol. 10, 2015.
+                </p>
+            </article>
+
+        </div>
+
+        <p class="reference-note">
+            This section is presented in a project-homepage style for readability and consistency. Additional manuscript citation information, BibTeX entries, or DOI links can be appended later if needed.
+        </p>
+    </div>
+</section>
+
 
     </main>
 
