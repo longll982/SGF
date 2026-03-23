@@ -18,8 +18,9 @@
             <h1 class="text-2xl font-bold text-blue-700">GazeMed Dataset</h1>
             <div class="space-x-6 font-medium text-gray-600">
                 <a href="#about" class="hover:text-blue-600 transition">About</a>
+                <a href="#figures" class="hover:text-blue-600 transition">Figures</a>
                 <a href="#download" class="hover:text-blue-600 transition">Download</a>
-                </div>
+            </div>
         </div>
     </nav>
 
@@ -31,7 +32,49 @@
     </header>
 
     <main class="max-w-6xl mx-auto px-4 py-12">
-        
+
+        <!-- Figures Section -->
+        <section id="figures" class="mb-20">
+            <h3 class="text-3xl font-bold mb-8 border-l-4 border-blue-600 pl-4 text-gray-800">Figures</h3>
+
+            <div class="grid md:grid-cols-1 gap-10">
+                
+                <!-- gaze.jpg -->
+                <div class="bg-white rounded-2xl shadow-sm border overflow-hidden">
+                    <img src="images/gaze.jpg" alt="Gaze visualization" class="w-full h-auto object-contain bg-white">
+                    <div class="p-6">
+                        <h4 class="text-xl font-semibold text-gray-800 mb-2">Gaze Data Visualization</h4>
+                        <p class="text-gray-600 leading-relaxed">
+                            Illustration of expert eye-tracking patterns collected during medical image observation.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- table1.png -->
+                <div class="bg-white rounded-2xl shadow-sm border overflow-hidden">
+                    <img src="images/table1.png" alt="Dataset statistics table" class="w-full h-auto object-contain bg-white">
+                    <div class="p-6">
+                        <h4 class="text-xl font-semibold text-gray-800 mb-2">Dataset Statistics</h4>
+                        <p class="text-gray-600 leading-relaxed">
+                            Summary of dataset characteristics, imaging modalities, annotation settings, and train/validation/test splits.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Algorithm 1.png -->
+                <div class="bg-white rounded-2xl shadow-sm border overflow-hidden">
+                    <img src="images/Algorithm%201.png" alt="Algorithm for standardized dataset construction" class="w-full h-auto object-contain bg-white">
+                    <div class="p-6">
+                        <h4 class="text-xl font-semibold text-gray-800 mb-2">Dataset Construction Algorithm</h4>
+                        <p class="text-gray-600 leading-relaxed">
+                            Pipeline for standardized gaze dataset construction from eye-tracking recordings.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
         <section id="download" class="mb-20">
             <h3 class="text-3xl font-bold mb-8 border-l-4 border-blue-600 pl-4 text-gray-800">Dataset Download</h3>
             
@@ -94,7 +137,7 @@
             </div>
         </section>
 
-        </main>
+    </main>
 
     <footer class="bg-gray-100 py-12 text-center text-gray-500 text-sm border-t">
         <p class="mb-2 italic">For academic research use only. Licensed under Creative Commons BY-NC-SA 4.0.</p>
