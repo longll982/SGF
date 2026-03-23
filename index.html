@@ -1,147 +1,755 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GazeMed: Medical Image Segmentation Dataset with Eye-tracking</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GazeMed | Gaze-Annotated Benchmarks for Weakly Supervised Medical Image Segmentation</title>
+    <meta name="description" content="GazeMed is a medical image segmentation benchmark with expert eye-tracking signals for clinically grounded weak supervision across polyp and brain tumor tasks." />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
     <style>
-        .gradient-bg { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); }
-        .smooth-scroll { scroll-behavior: smooth; }
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            background: #f8fafc;
+            color: #0f172a;
+        }
+
+        .hero-bg {
+            background:
+                radial-gradient(circle at 85% 15%, rgba(56, 189, 248, 0.20), transparent 22%),
+                radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.20), transparent 28%),
+                linear-gradient(135deg, #0f172a 0%, #102a5c 45%, #0f4aa8 100%);
+        }
+
+        .nav-link {
+            position: relative;
+            color: #475569;
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: #2563eb;
+        }
+
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 0;
+            height: 2px;
+            background: #2563eb;
+            transition: width 0.2s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .section-anchor {
+            scroll-margin-top: 100px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.45rem 0.8rem;
+            border-radius: 999px;
+            background: rgba(37, 99, 235, 0.08);
+            border: 1px solid rgba(37, 99, 235, 0.12);
+            color: #1d4ed8;
+            font-size: 0.74rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .section-title {
+            font-size: clamp(1.9rem, 3.8vw, 3rem);
+            line-height: 1.08;
+            letter-spacing: -0.03em;
+            font-weight: 800;
+        }
+
+        .section-intro {
+            margin-top: 1.2rem;
+            max-width: 60rem;
+            color: #475569;
+            font-size: 1.05rem;
+            line-height: 1.95;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.92);
+            border: 1px solid rgba(148, 163, 184, 0.16);
+            box-shadow: 0 16px 44px rgba(15, 23, 42, 0.12);
+            backdrop-filter: blur(12px);
+        }
+
+        .panel {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 12px 32px rgba(15, 23, 42, 0.06);
+        }
+
+        .stat-tile {
+            border: 1px solid #e2e8f0;
+            background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+            border-radius: 1rem;
+            padding: 1rem;
+        }
+
+        .stat-number {
+            font-size: 1.8rem;
+            line-height: 1;
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            color: #0f172a;
+        }
+
+        .stat-label {
+            margin-top: 0.35rem;
+            font-size: 0.92rem;
+            color: #64748b;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.65rem;
+            padding: 0.92rem 1.3rem;
+            border-radius: 999px;
+            background: #ffffff;
+            color: #0f172a;
+            font-weight: 700;
+            box-shadow: 0 14px 30px rgba(15, 23, 42, 0.14);
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.65rem;
+            padding: 0.92rem 1.3rem;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            font-weight: 700;
+            transition: all 0.2s ease;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.14);
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.45rem 0.8rem;
+            border-radius: 999px;
+            border: 1px solid #dbeafe;
+            background: #eff6ff;
+            color: #1d4ed8;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.45rem 0.8rem;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.10);
+            color: #e2e8f0;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            font-size: 0.82rem;
+            font-weight: 600;
+        }
+
+        .figure-frame {
+            overflow: hidden;
+            border-radius: 1.5rem;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+        }
+
+        .figure-frame img {
+            transition: transform 0.35s ease;
+        }
+
+        .figure-frame:hover img {
+            transform: scale(1.015);
+        }
+
+        .figure-caption {
+            color: #475569;
+            line-height: 1.85;
+        }
+
+        .download-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 1rem 1.05rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 1rem;
+            background: #ffffff;
+            transition: all 0.2s ease;
+        }
+
+        .download-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 28px rgba(15, 23, 42, 0.08);
+            border-color: #cbd5e1;
+        }
+
+        .download-item.green {
+            border-color: #bbf7d0;
+            background: linear-gradient(180deg, #f0fdf4 0%, #ffffff 100%);
+        }
+
+        .download-item.purple {
+            border-color: #ddd6fe;
+            background: linear-gradient(180deg, #f5f3ff 0%, #ffffff 100%);
+        }
+
+        .mini-title {
+            font-size: 0.92rem;
+            font-weight: 700;
+            color: #475569;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .soft-muted {
+            color: #64748b;
+        }
     </style>
 </head>
-<body class="bg-gray-50 font-sans text-gray-900 smooth-scroll">
+<body>
 
-    <nav class="bg-white shadow-md p-4 sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto flex justify-between items-center">
-            <h1 class="text-2xl font-bold text-blue-700">GazeMed Dataset</h1>
-            <div class="space-x-6 font-medium text-gray-600">
-                <a href="#about" class="hover:text-blue-600 transition">About</a>
-                <a href="#figures" class="hover:text-blue-600 transition">Figures</a>
-                <a href="#download" class="hover:text-blue-600 transition">Download</a>
+    <nav class="sticky top-0 z-50 border-b border-slate-200/80 bg-white/85 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="#home" class="flex items-center gap-3">
+                <div class="h-10 w-10 rounded-xl bg-blue-600 text-white flex items-center justify-center shadow-md">
+                    <i class="fa-solid fa-eye"></i>
+                </div>
+                <div>
+                    <div class="text-lg font-extrabold tracking-tight text-slate-900">GazeMed</div>
+                    <div class="text-xs text-slate-500">Medical Image Segmentation Benchmark</div>
+                </div>
+            </a>
+
+            <div class="hidden md:flex items-center gap-7 text-sm">
+                <a href="#overview" class="nav-link">Overview</a>
+                <a href="#annotation" class="nav-link">Annotation</a>
+                <a href="#workflow" class="nav-link">Workflow</a>
+                <a href="#download" class="nav-link">Download</a>
             </div>
         </div>
     </nav>
 
-    <header id="about" class="gradient-bg text-white py-20 px-4 text-center">
-        <h2 class="text-4xl md:text-5xl font-extrabold mb-6">Medical Eye-tracking Dataset for Weakly-supervised Segmentation</h2>
-        <p class="text-xl max-w-3xl mx-auto opacity-90 leading-relaxed">
-            A comprehensive benchmark combining <b>Polyp</b> and <b>Brain Tumor</b> imaging with high-frequency eye-tracking data to facilitate research in weakly-supervised medical image analysis.
-        </p>
+    <header id="home" class="hero-bg text-white">
+        <div class="max-w-7xl mx-auto px-6 py-20 lg:py-28">
+            <div class="grid lg:grid-cols-2 gap-10 items-center">
+                <div>
+                    <div class="eyebrow !bg-white/10 !text-slate-100 !border-white/15 mb-6">
+                        <i class="fa-solid fa-microscope"></i>
+                        Project Homepage
+                    </div>
+
+                    <h1 class="text-4xl md:text-5xl xl:text-6xl font-extrabold leading-tight tracking-tight">
+                        Gaze-Annotated Benchmarks for
+                        <span class="text-sky-300">Weakly Supervised</span>
+                        Medical Image Segmentation
+                    </h1>
+
+                    <p class="mt-6 text-lg md:text-xl text-slate-200 leading-8 max-w-3xl">
+                        GazeMed is a clinically oriented benchmark that couples expert eye-tracking trajectories with two representative lesion segmentation tasks:
+                        colonoscopic polyp analysis and contrast-enhanced brain tumor MRI. The page summarizes benchmark composition, expert gaze acquisition,
+                        standardized construction workflow, and direct download access.
+                    </p>
+
+                    <div class="mt-8 flex flex-wrap gap-4">
+                        <a href="#overview" class="btn-primary">
+                            <i class="fa-solid fa-book-open"></i>
+                            Explore Benchmark
+                        </a>
+                        <a href="#download" class="btn-secondary">
+                            <i class="fa-solid fa-download"></i>
+                            Download Resources
+                        </a>
+                    </div>
+
+                    <div class="mt-8 flex flex-wrap gap-3">
+                        <span class="hero-tag"><i class="fa-solid fa-video"></i> Polyp Segmentation</span>
+                        <span class="hero-tag"><i class="fa-solid fa-brain"></i> Brain Tumor MRI</span>
+                        <span class="hero-tag"><i class="fa-solid fa-eye"></i> Expert Gaze Supervision</span>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-3xl p-6 lg:p-7 text-slate-900">
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <div class="text-sm font-semibold uppercase tracking-[0.12em] text-blue-700">Dataset Snapshot</div>
+                            <div class="text-2xl font-extrabold tracking-tight mt-1">Benchmark at a Glance</div>
+                        </div>
+                        <span class="tag"><i class="fa-solid fa-wave-square"></i> Clinically grounded</span>
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 xl:grid-cols-3 gap-4">
+                        <div class="stat-tile">
+                            <div class="stat-number">2</div>
+                            <div class="stat-label">Core tasks</div>
+                        </div>
+                        <div class="stat-tile">
+                            <div class="stat-number">6</div>
+                            <div class="stat-label">Source datasets</div>
+                        </div>
+                        <div class="stat-tile">
+                            <div class="stat-number">6,848</div>
+                            <div class="stat-label">Total images</div>
+                        </div>
+                        <div class="stat-tile">
+                            <div class="stat-number">4</div>
+                            <div class="stat-label">Clinical experts</div>
+                        </div>
+                        <div class="stat-tile">
+                            <div class="stat-number">100 Hz</div>
+                            <div class="stat-label">Gaze sampling rate</div>
+                        </div>
+                        <div class="stat-tile">
+                            <div class="stat-number">384×384</div>
+                            <div class="stat-label">Unified input size</div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 rounded-2xl border border-slate-200 bg-slate-50 px-5 py-4 text-sm leading-7 text-slate-600">
+                        Dense pixel-level masks are reserved for benchmarking and evaluation, while the training setup is driven by gaze trajectories collected during controlled expert image inspection.
+                    </div>
+                </div>
+            </div>
+        </div>
     </header>
 
-    <main class="max-w-6xl mx-auto px-4 py-12">
+    <main>
 
-        <!-- Figures Section -->
-        <section id="figures" class="mb-20">
-            <h3 class="text-3xl font-bold mb-8 border-l-4 border-blue-600 pl-4 text-gray-800">Figures</h3>
-
-            <div class="grid md:grid-cols-1 gap-10">
-                
-                <!-- gaze.jpg -->
-                <div class="bg-white rounded-2xl shadow-sm border overflow-hidden">
-                    <img src="images/gaze.jpg" alt="Gaze visualization" class="w-full h-auto object-contain bg-white">
-                    <div class="p-6">
-                        <h4 class="text-xl font-semibold text-gray-800 mb-2">Gaze Data Visualization</h4>
-                        <p class="text-gray-600 leading-relaxed">
-                            Illustration of expert eye-tracking patterns collected during medical image observation.
+        <section id="overview" class="section-anchor py-20">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="grid xl:grid-cols-12 gap-8 items-start">
+                    <div class="xl:col-span-7">
+                        <div class="eyebrow">
+                            <i class="fa-solid fa-layer-group"></i>
+                            Dataset Overview
+                        </div>
+                        <h2 class="section-title mt-5">
+                            A unified benchmark spanning endoscopy and contrast-enhanced brain MRI
+                        </h2>
+                        <p class="section-intro">
+                            To support rigorous assessment of gaze-guided weak supervision under heterogeneous clinical conditions, the benchmark organizes six medical imaging sources into two task-centered segmentation settings. These tasks were selected because they are clinically important and because they expose complementary challenges in lesion localization, contour recovery, and appearance variability.
                         </p>
+
+                        <div class="mt-10 grid md:grid-cols-2 gap-6">
+                            <article class="panel rounded-3xl p-6">
+                                <div class="flex items-center justify-between gap-4 flex-wrap">
+                                    <div class="flex items-center gap-3">
+                                        <div class="h-12 w-12 rounded-2xl bg-blue-50 text-blue-700 flex items-center justify-center">
+                                            <i class="fa-solid fa-microscope text-lg"></i>
+                                        </div>
+                                        <div>
+                                            <h3 class="text-xl font-bold tracking-tight">Colonic Polyp Benchmark</h3>
+                                            <p class="text-sm text-slate-500 mt-1">White-light endoscopy</p>
+                                        </div>
+                                    </div>
+                                    <span class="tag">3,784 images</span>
+                                </div>
+
+                                <p class="mt-5 text-slate-600 leading-8">
+                                    This subset merges five established colonoscopy datasets—CVC-ClinicDB, CVC-ColonDB, ETIS-LaribPolypDB, Kvasir, and PolypGen—into a unified endoscopic benchmark. Pronounced cross-patient morphology, subtle lesion contrast, and visually complex mucosal backgrounds make it a demanding testbed for gaze-informed spatial localization under weak supervision.
+                                </p>
+
+                                <div class="mt-5 flex flex-wrap gap-2">
+                                    <span class="tag">Five-source aggregation</span>
+                                    <span class="tag">Pixel-level masks</span>
+                                    <span class="tag">Approx. 5% multi-lesion</span>
+                                </div>
+                            </article>
+
+                            <article class="panel rounded-3xl p-6">
+                                <div class="flex items-center justify-between gap-4 flex-wrap">
+                                    <div class="flex items-center gap-3">
+                                        <div class="h-12 w-12 rounded-2xl bg-indigo-50 text-indigo-700 flex items-center justify-center">
+                                            <i class="fa-solid fa-brain text-lg"></i>
+                                        </div>
+                                        <div>
+                                            <h3 class="text-xl font-bold tracking-tight">Brain Tumor Benchmark</h3>
+                                            <p class="text-sm text-slate-500 mt-1">T1-weighted contrast-enhanced MRI</p>
+                                        </div>
+                                    </div>
+                                    <span class="tag">3,064 slices</span>
+                                </div>
+
+                                <p class="mt-5 text-slate-600 leading-8">
+                                    This subset contains axial T1-CE-MRI slices collected through institutional collaboration involving Nanfang Hospital and Tianjin Medical University. It complements the endoscopic task with substantial changes in tumor extent, shape, and anatomical context, providing a strong setting for studying gaze-aware boundary reasoning in medical images.
+                                </p>
+
+                                <div class="mt-5 flex flex-wrap gap-2">
+                                    <span class="tag">Institutional cohort</span>
+                                    <span class="tag">Pixel-level masks</span>
+                                    <span class="tag">Less than 1% multi-lesion</span>
+                                </div>
+                            </article>
+                        </div>
+
+                        <div class="panel rounded-3xl p-6 mt-6">
+                            <h3 class="text-lg font-bold tracking-tight">Unified preprocessing and supervision setting</h3>
+                            <p class="mt-3 text-slate-600 leading-8">
+                                For consistent model development, all samples are resized to <strong>384 × 384</strong> before training and evaluation. Pixel-wise expert delineations are used only for quantitative assessment, whereas the learning signal during training is derived from expert eye-tracking recordings rather than dense manual outlines.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="xl:col-span-5">
+                        <div class="panel rounded-3xl overflow-hidden figure-frame">
+                            <a href="images/table1.png" target="_blank" rel="noopener">
+                                <img src="images/table1.png" alt="Benchmark summary table" class="w-full h-auto object-contain bg-white" loading="lazy" />
+                            </a>
+                            <div class="p-6">
+                                <div class="flex items-center justify-between gap-4 flex-wrap">
+                                    <span class="eyebrow !text-blue-700 !bg-blue-50 !border-blue-100">Benchmark Statistics</span>
+                                    <a href="images/table1.png" target="_blank" rel="noopener" class="text-sm font-semibold text-blue-700 hover:underline">
+                                        Open full resolution
+                                    </a>
+                                </div>
+                                <h3 class="mt-4 text-2xl font-bold tracking-tight">Composition, annotation profile, and split configuration</h3>
+                                <p class="mt-3 figure-caption">
+                                    The table summarizes dataset source characteristics, preprocessing resolution, annotation format, weak supervisory signal, and the train/validation/test partitions used for systematic evaluation across the two tasks.
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-                <!-- table1.png -->
-                <div class="bg-white rounded-2xl shadow-sm border overflow-hidden">
-                    <img src="images/table1.png" alt="Dataset statistics table" class="w-full h-auto object-contain bg-white">
-                    <div class="p-6">
-                        <h4 class="text-xl font-semibold text-gray-800 mb-2">Dataset Statistics</h4>
-                        <p class="text-gray-600 leading-relaxed">
-                            Summary of dataset characteristics, imaging modalities, annotation settings, and train/validation/test splits.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Algorithm 1.png -->
-                <div class="bg-white rounded-2xl shadow-sm border overflow-hidden">
-                    <img src="images/Algorithm%201.png" alt="Algorithm for standardized dataset construction" class="w-full h-auto object-contain bg-white">
-                    <div class="p-6">
-                        <h4 class="text-xl font-semibold text-gray-800 mb-2">Dataset Construction Algorithm</h4>
-                        <p class="text-gray-600 leading-relaxed">
-                            Pipeline for standardized gaze dataset construction from eye-tracking recordings.
-                        </p>
-                    </div>
-                </div>
-
             </div>
         </section>
 
-        <section id="download" class="mb-20">
-            <h3 class="text-3xl font-bold mb-8 border-l-4 border-blue-600 pl-4 text-gray-800">Dataset Download</h3>
-            
-            <div class="bg-white rounded-xl shadow-sm border mb-10 overflow-hidden">
-                <div class="bg-blue-50 px-6 py-4 font-bold text-blue-800 flex justify-between items-center">
-                    <span><i class="fas fa-microscope mr-2"></i> Polyp Dataset</span>
-                    <span class="text-xs font-normal bg-blue-200 px-2 py-1 rounded text-blue-800 uppercase">Gastrointestinal</span>
-                </div>
-                <div class="p-6">
-                    <div class="grid md:grid-cols-2 gap-8">
-                        <div class="space-y-3">
-                            <p class="font-semibold text-gray-700 flex items-center italic"><i class="fas fa-images mr-2 text-blue-500"></i> Original Images (3 Parts)</p>
-                            <a href="https://drive.google.com/uc?export=download&id=1EvVTVA7qwXGFDVpnNUVYdGZBvfHoa8Ei" class="block p-3 border rounded hover:bg-gray-50 flex justify-between group">
-                                <span>Polyp Images Part 1</span><span class="text-blue-600 font-mono text-sm group-hover:underline">Download <i class="fas fa-download ml-1"></i></span>
+        <section id="annotation" class="section-anchor py-20 bg-white/70">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="grid xl:grid-cols-12 gap-8 items-center">
+                    <div class="xl:col-span-5">
+                        <div class="panel rounded-3xl overflow-hidden figure-frame">
+                            <a href="images/gaze.jpg" target="_blank" rel="noopener">
+                                <img src="images/gaze.jpg" alt="Gaze annotation framework" class="w-full h-auto object-contain bg-white" loading="lazy" />
                             </a>
-                            <a href="https://drive.google.com/uc?export=download&id=1Ou-GkTXiSFyuWFh9vs3q4w9o8po3bw92" class="block p-3 border rounded hover:bg-gray-50 flex justify-between group">
-                                <span>Polyp Images Part 2</span><span class="text-blue-600 font-mono text-sm group-hover:underline">Download <i class="fas fa-download ml-1"></i></span>
-                            </a>
-                            <a href="https://drive.google.com/uc?export=download&id=1VA5xqEVyUKdAqlrb3HiaCfjG5zBRzoox" class="block p-3 border rounded hover:bg-gray-50 flex justify-between group">
-                                <span>Polyp Images Part 3</span><span class="text-blue-600 font-mono text-sm group-hover:underline">Download <i class="fas fa-download ml-1"></i></span>
-                            </a>
+                            <div class="p-6">
+                                <div class="flex items-center justify-between gap-4 flex-wrap">
+                                    <span class="eyebrow !text-blue-700 !bg-blue-50 !border-blue-100">Annotation Framework</span>
+                                    <a href="images/gaze.jpg" target="_blank" rel="noopener" class="text-sm font-semibold text-blue-700 hover:underline">
+                                        Open full resolution
+                                    </a>
+                                </div>
+                                <h3 class="mt-4 text-2xl font-bold tracking-tight">Controlled gaze acquisition and image-space registration</h3>
+                                <p class="mt-3 figure-caption">
+                                    This figure illustrates the experimental setup used to capture expert eye movements, including device calibration, routine-style image inspection, and spatial registration of gaze trajectories to the displayed medical image.
+                                </p>
+                            </div>
                         </div>
-                        <div class="space-y-3">
-                            <p class="font-semibold text-gray-700 flex items-center italic"><i class="fas fa-eye mr-2 text-purple-500"></i> Labels & Gaze Data</p>
-                            <a href="https://drive.google.com/uc?export=download&id=1u-0RbkRYlKuyt5L0dWeUzOYHQB0phSTA" class="block p-3 border rounded border-green-200 bg-green-50/50 flex justify-between group">
-                                <span class="text-green-800 font-medium">Expert Segmentation Masks</span><span class="text-green-700 font-mono text-sm group-hover:underline text-xs">Download GT</span>
-                            </a>
-                            <a href="https://drive.google.com/uc?export=download&id=1U-kO-00DAg-L8fXIusi_iMHPkSh0txB5" class="block p-3 border rounded border-purple-200 bg-purple-50 flex justify-between font-bold text-purple-700 group">
-                                <span>Polyp Gaze Coordinates</span><span class="group-hover:underline text-xs">Download CSV/ZIP</span>
-                            </a>
+                    </div>
+
+                    <div class="xl:col-span-7">
+                        <div class="eyebrow">
+                            <i class="fa-solid fa-eye"></i>
+                            Gaze Annotation Protocol
+                        </div>
+                        <h2 class="section-title mt-5">
+                            Passive expert gaze collection with built-in quality assurance
+                        </h2>
+                        <p class="section-intro">
+                            Instead of requiring clinicians to draw lesion contours during data acquisition, the annotation framework records visual attention while experts inspect images in a controlled reading environment. This strategy substantially lowers annotation burden while preserving clinically meaningful perceptual cues that can be exploited as weak supervisory signals.
+                        </p>
+
+                        <div class="mt-10 grid md:grid-cols-3 gap-5">
+                            <article class="panel rounded-3xl p-5">
+                                <div class="h-12 w-12 rounded-2xl bg-sky-50 text-sky-700 flex items-center justify-center mb-4">
+                                    <i class="fa-solid fa-user-doctor"></i>
+                                </div>
+                                <h3 class="text-lg font-bold tracking-tight">Expert protocol</h3>
+                                <p class="mt-3 text-slate-600 leading-7">
+                                    Four board-certified clinicians participated in the collection process. Two focused on the polyp task and two focused on the brain tumor task, ensuring domain-specific interpretation during image inspection.
+                                </p>
+                            </article>
+
+                            <article class="panel rounded-3xl p-5">
+                                <div class="h-12 w-12 rounded-2xl bg-emerald-50 text-emerald-700 flex items-center justify-center mb-4">
+                                    <i class="fa-solid fa-shield-heart"></i>
+                                </div>
+                                <h3 class="text-lg font-bold tracking-tight">Quality control</h3>
+                                <p class="mt-3 text-slate-600 leading-7">
+                                    Each task group first completed independent reading sessions and then partially reviewed counterpart cases. Samples showing unstable fixations, abnormal dispersion, or insufficient lesion coverage were excluded before release.
+                                </p>
+                            </article>
+
+                            <article class="panel rounded-3xl p-5">
+                                <div class="h-12 w-12 rounded-2xl bg-violet-50 text-violet-700 flex items-center justify-center mb-4">
+                                    <i class="fa-solid fa-vr-cardboard"></i>
+                                </div>
+                                <h3 class="text-lg font-bold tracking-tight">Acquisition setting</h3>
+                                <p class="mt-3 text-slate-600 leading-7">
+                                    Gaze signals were collected with an HTC VIVE Pro Eye headset in a Unity-based environment using SteamVR. Data were sampled at 100 Hz, and each image remained on screen for 2.0 seconds.
+                                </p>
+                            </article>
+                        </div>
+
+                        <div class="panel rounded-3xl p-6 mt-6">
+                            <h3 class="text-lg font-bold tracking-tight">Spatial correspondence and stored gaze format</h3>
+                            <p class="mt-3 text-slate-600 leading-8">
+                                After acquisition, gaze trajectories are projected back onto the image plane and exported as two-dimensional coordinate sequences aligned with the original medical images. Under the fixed viewing duration, each sample typically yields roughly <strong>100–200 valid gaze points</strong>, providing a compact yet clinically informative description of expert visual attention.
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <div class="bg-white rounded-xl shadow-sm border mb-8 overflow-hidden">
-                <div class="bg-indigo-50 px-6 py-4 font-bold text-indigo-800 flex justify-between items-center">
-                    <span><i class="fas fa-brain mr-2"></i> Brain Tumor Dataset</span>
-                    <span class="text-xs font-normal bg-indigo-200 px-2 py-1 rounded text-indigo-800 uppercase">Neurology</span>
-                </div>
-                <div class="p-6">
-                    <div class="grid md:grid-cols-2 gap-8">
-                        <div class="space-y-3">
-                            <p class="font-semibold text-gray-700 flex items-center italic"><i class="fas fa-images mr-2 text-indigo-500"></i> Original Images</p>
-                            <a href="https://drive.google.com/uc?export=download&id=1x6Ew5C9OqtoFSfAro_YowOi4a6SvN_iU" class="block p-3 border rounded hover:bg-gray-50 flex justify-between group">
-                                <span>Brain MRI Images (.zip)</span><span class="text-indigo-600 font-mono text-sm group-hover:underline">Download <i class="fas fa-download ml-1"></i></span>
-                            </a>
+        <section id="workflow" class="section-anchor py-20">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="grid xl:grid-cols-12 gap-8 items-start">
+                    <div class="xl:col-span-7">
+                        <div class="eyebrow">
+                            <i class="fa-solid fa-diagram-project"></i>
+                            Dataset Construction Workflow
                         </div>
-                        <div class="space-y-3">
-                            <p class="font-semibold text-gray-700 flex items-center italic"><i class="fas fa-eye mr-2 text-purple-500"></i> Labels & Gaze Data</p>
-                            <a href="https://drive.google.com/uc?export=download&id=1pmzadVEVedFvot1_VavAO-6vxy-fsnnY" class="block p-3 border rounded border-green-200 bg-green-50/50 flex justify-between group">
-                                <span class="text-green-800 font-medium">Brain Expert Masks</span><span class="text-green-700 font-mono text-sm group-hover:underline text-xs">Download GT</span>
-                            </a>
-                            <a href="https://drive.google.com/uc?export=download&id=1z6tM2_hoam0lTON_Rk2rrRYOguMXZJmU" class="block p-3 border rounded border-purple-200 bg-purple-50 flex justify-between font-bold text-purple-700 group">
-                                <span>Brain Gaze Coordinates</span><span class="group-hover:underline text-xs">Download CSV/ZIP</span>
-                            </a>
+                        <h2 class="section-title mt-5">
+                            Standardized transformation from raw eye movements to training-ready gaze sequences
+                        </h2>
+                        <p class="section-intro">
+                            The construction routine follows a canonical sequence: present the image, confirm eye-tracker readiness, record valid gaze samples over a fixed observation window, map these points onto the standardized spatial canvas, and aggregate all sample-wise trajectories into the final benchmark. This design keeps the acquisition process consistent across tasks and readers.
+                        </p>
+
+                        <div class="mt-10 grid sm:grid-cols-2 gap-5">
+                            <article class="panel rounded-3xl p-5">
+                                <div class="text-sm font-extrabold text-blue-700 tracking-[0.12em] uppercase">Step 01</div>
+                                <h3 class="mt-2 text-lg font-bold tracking-tight">Display and calibration check</h3>
+                                <p class="mt-3 text-slate-600 leading-7">
+                                    Each medical image is presented in the virtual reading environment only after the eye-tracker calibration status is confirmed.
+                                </p>
+                            </article>
+
+                            <article class="panel rounded-3xl p-5">
+                                <div class="text-sm font-extrabold text-blue-700 tracking-[0.12em] uppercase">Step 02</div>
+                                <h3 class="mt-2 text-lg font-bold tracking-tight">Continuous gaze capture</h3>
+                                <p class="mt-3 text-slate-600 leading-7">
+                                    During the 2.0-second inspection period, gaze coordinates are sampled continuously, and only valid points are retained as part of the sample-specific sequence.
+                                </p>
+                            </article>
+
+                            <article class="panel rounded-3xl p-5">
+                                <div class="text-sm font-extrabold text-blue-700 tracking-[0.12em] uppercase">Step 03</div>
+                                <h3 class="mt-2 text-lg font-bold tracking-tight">Canonical spatial mapping</h3>
+                                <p class="mt-3 text-slate-600 leading-7">
+                                    The retained fixation points are projected onto the standardized image resolution so that all training samples share the same spatial reference.
+                                </p>
+                            </article>
+
+                            <article class="panel rounded-3xl p-5">
+                                <div class="text-sm font-extrabold text-blue-700 tracking-[0.12em] uppercase">Step 04</div>
+                                <h3 class="mt-2 text-lg font-bold tracking-tight">Sequence aggregation</h3>
+                                <p class="mt-3 text-slate-600 leading-7">
+                                    Sample-level gaze sequences are stored and then combined into a unified repository, producing a benchmark that is ready for downstream weakly supervised segmentation studies.
+                                </p>
+                            </article>
                         </div>
                     </div>
+
+                    <div class="xl:col-span-5">
+                        <div class="panel rounded-3xl overflow-hidden figure-frame">
+                            <a href="images/Algorithm%201.png" target="_blank" rel="noopener">
+                                <img src="images/Algorithm%201.png" alt="Algorithm for gaze dataset construction" class="w-full h-auto object-contain bg-white" loading="lazy" />
+                            </a>
+                            <div class="p-6">
+                                <div class="flex items-center justify-between gap-4 flex-wrap">
+                                    <span class="eyebrow !text-blue-700 !bg-blue-50 !border-blue-100">Standardized Workflow</span>
+                                    <a href="images/Algorithm%201.png" target="_blank" rel="noopener" class="text-sm font-semibold text-blue-700 hover:underline">
+                                        Open full resolution
+                                    </a>
+                                </div>
+                                <h3 class="mt-4 text-2xl font-bold tracking-tight">Canonical procedure for benchmark assembly</h3>
+                                <p class="mt-3 figure-caption">
+                                    The algorithm summarizes the end-to-end construction process, from controlled display and gaze capture to valid-point filtering, resolution unification, and dataset-level aggregation.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="download" class="section-anchor py-20 bg-white/70">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="eyebrow">
+                    <i class="fa-solid fa-download"></i>
+                    Dataset Download
+                </div>
+                <h2 class="section-title mt-5">
+                    Direct access to images, expert masks, and gaze coordinate files
+                </h2>
+                <p class="section-intro">
+                    The download section below keeps the two benchmark branches separate for clarity. Each branch contains the original imaging data together with the corresponding ground-truth masks and gaze-coordinate files used in the weakly supervised setting.
+                </p>
+
+                <div class="mt-10 grid xl:grid-cols-2 gap-8">
+
+                    <article class="panel rounded-3xl overflow-hidden">
+                        <div class="bg-blue-50 border-b border-blue-100 px-6 py-5 flex items-center justify-between gap-4 flex-wrap">
+                            <div>
+                                <div class="flex items-center gap-3">
+                                    <div class="h-11 w-11 rounded-2xl bg-white text-blue-700 flex items-center justify-center shadow-sm">
+                                        <i class="fa-solid fa-microscope"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-xl font-bold tracking-tight text-slate-900">Polyp Dataset</h3>
+                                        <p class="text-sm text-slate-500 mt-1">Gastrointestinal endoscopy benchmark</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="tag">3,784 images</span>
+                                <span class="tag">White-light endoscopy</span>
+                            </div>
+                        </div>
+
+                        <div class="p-6">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="space-y-3">
+                                    <div class="mini-title">
+                                        <i class="fa-solid fa-images text-blue-600"></i>
+                                        Original Images
+                                    </div>
+
+                                    <a href="https://drive.google.com/uc?export=download&id=1EvVTVA7qwXGFDVpnNUVYdGZBvfHoa8Ei" target="_blank" class="download-item">
+                                        <span>Polyp Images Part 1</span>
+                                        <span class="text-blue-700 font-semibold text-sm">Download</span>
+                                    </a>
+
+                                    <a href="https://drive.google.com/uc?export=download&id=1Ou-GkTXiSFyuWFh9vs3q4w9o8po3bw92" target="_blank" class="download-item">
+                                        <span>Polyp Images Part 2</span>
+                                        <span class="text-blue-700 font-semibold text-sm">Download</span>
+                                    </a>
+
+                                    <a href="https://drive.google.com/uc?export=download&id=1VA5xqEVyUKdAqlrb3HiaCfjG5zBRzoox" target="_blank" class="download-item">
+                                        <span>Polyp Images Part 3</span>
+                                        <span class="text-blue-700 font-semibold text-sm">Download</span>
+                                    </a>
+                                </div>
+
+                                <div class="space-y-3">
+                                    <div class="mini-title">
+                                        <i class="fa-solid fa-eye text-violet-600"></i>
+                                        Ground Truth & Gaze Data
+                                    </div>
+
+                                    <a href="https://drive.google.com/uc?export=download&id=1u-0RbkRYlKuyt5L0dWeUzOYHQB0phSTA" target="_blank" class="download-item green">
+                                        <span class="font-medium text-emerald-800">Expert Segmentation Masks</span>
+                                        <span class="text-emerald-700 font-semibold text-sm">Download GT</span>
+                                    </a>
+
+                                    <a href="https://drive.google.com/uc?export=download&id=1U-kO-00DAg-L8fXIusi_iMHPkSh0txB5" target="_blank" class="download-item purple">
+                                        <span class="font-semibold text-violet-800">Polyp Gaze Coordinates</span>
+                                        <span class="text-violet-700 font-semibold text-sm">CSV / ZIP</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="panel rounded-3xl overflow-hidden">
+                        <div class="bg-indigo-50 border-b border-indigo-100 px-6 py-5 flex items-center justify-between gap-4 flex-wrap">
+                            <div>
+                                <div class="flex items-center gap-3">
+                                    <div class="h-11 w-11 rounded-2xl bg-white text-indigo-700 flex items-center justify-center shadow-sm">
+                                        <i class="fa-solid fa-brain"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-xl font-bold tracking-tight text-slate-900">Brain Tumor Dataset</h3>
+                                        <p class="text-sm text-slate-500 mt-1">Neurological imaging benchmark</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="tag">3,064 slices</span>
+                                <span class="tag">T1-CE-MRI</span>
+                            </div>
+                        </div>
+
+                        <div class="p-6">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="space-y-3">
+                                    <div class="mini-title">
+                                        <i class="fa-solid fa-images text-indigo-600"></i>
+                                        Original Images
+                                    </div>
+
+                                    <a href="https://drive.google.com/uc?export=download&id=1x6Ew5C9OqtoFSfAro_YowOi4a6SvN_iU" target="_blank" class="download-item">
+                                        <span>Brain MRI Images (.zip)</span>
+                                        <span class="text-indigo-700 font-semibold text-sm">Download</span>
+                                    </a>
+                                </div>
+
+                                <div class="space-y-3">
+                                    <div class="mini-title">
+                                        <i class="fa-solid fa-eye text-violet-600"></i>
+                                        Ground Truth & Gaze Data
+                                    </div>
+
+                                    <a href="https://drive.google.com/uc?export=download&id=1pmzadVEVedFvot1_VavAO-6vxy-fsnnY" target="_blank" class="download-item green">
+                                        <span class="font-medium text-emerald-800">Brain Expert Masks</span>
+                                        <span class="text-emerald-700 font-semibold text-sm">Download GT</span>
+                                    </a>
+
+                                    <a href="https://drive.google.com/uc?export=download&id=1z6tM2_hoam0lTON_Rk2rrRYOguMXZJmU" target="_blank" class="download-item purple">
+                                        <span class="font-semibold text-violet-800">Brain Gaze Coordinates</span>
+                                        <span class="text-violet-700 font-semibold text-sm">CSV / ZIP</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
                 </div>
             </div>
         </section>
 
     </main>
 
-    <footer class="bg-gray-100 py-12 text-center text-gray-500 text-sm border-t">
-        <p class="mb-2 italic">For academic research use only. Licensed under Creative Commons BY-NC-SA 4.0.</p>
-        <p>&copy; 2025 Your Institution Name. All rights reserved.</p>
+    <footer class="border-t border-slate-200 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-6 py-10 text-center">
+            <p class="text-slate-500 italic">
+                For academic research use only. Licensed under Creative Commons BY-NC-SA 4.0.
+            </p>
+            <p class="mt-2 text-sm text-slate-500">
+                &copy; 2025 Your Institution Name. All rights reserved.
+            </p>
+        </div>
     </footer>
 
 </body>
