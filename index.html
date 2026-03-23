@@ -1,50 +1,50 @@
 <section id="dataset-construction" class="mb-20">
-    <h3 class="text-3xl font-bold mb-8 border-l-4 border-blue-600 pl-4 text-gray-800">IV. Benchmark Curation & Methodology</h3>
+    <h3 class="text-3xl font-bold mb-8 border-l-4 border-blue-600 pl-4 text-gray-800">IV. Benchmark Curation & Procedural Methodology</h3>
 
     <div class="mb-12">
-        <h4 class="text-xl font-bold text-blue-700 mb-4">4.1 Dataset Consolidation and Performance Targets</h4>
+        <h4 class="text-xl font-bold text-blue-700 mb-4">4.1 Dataset Aggregation and Experimental Targets</h4>
         <p class="text-gray-700 leading-relaxed mb-6">
-            To rigorously evaluate the efficacy of gaze-guided weakly supervised segmentation, we consolidated six established medical image libraries into two distinct clinical benchmarks[cite: 267]. 
-            The <b>Colonic Polyp Benchmark</b> aggregates 3,784 endoscopic frames from five authoritative sources, including CVC-ClinicDB and PolypGen. This task is primarily defined by significant morphological variation and low tissue-to-background contrast[cite: 271]. 
-            Conversely, the <b>Neurological Neoplasm (Brain Tumor) Benchmark</b> comprises 3,064 axial slices derived from T1-CE-MRI sequences provided by Nanfang Hospital and Tianjin Medical University[cite: 272, 273]. 
-            All clinical samples are standardized to a $384 \times 384$ resolution to ensure experimental consistency across training and evaluation phases[cite: 274].
+            To provide a robust evaluation of gaze-guided weakly supervised segmentation, we curated two comprehensive clinical benchmarks by integrating six distinct medical image repositories[cite: 267]. 
+            The <b>Gastrointestinal Polyp Benchmark</b> consolidates 3,784 endoscopic images from five widely recognized sources, including CVC-ClinicDB and PolypGen[cite: 270]. This task is characterized by high morphological variability and complex background interference[cite: 271]. 
+            The <b>Neurological Neoplasm Benchmark</b> focuses on T1-CE-MRI sequences from Nanfang Hospital and Tianjin Medical University, comprising 3,064 axial slices[cite: 272]. This testbed is designed to evaluate boundary-aware spatial reasoning in 3D medical contexts[cite: 273]. 
+            All images are standardized to a resolution of 384 × 384 for training and quantitative assessment[cite: 274].
         </p>
 
         <div class="bg-white rounded-xl shadow-md border overflow-hidden mb-8">
             <div class="bg-slate-800 text-white px-6 py-3 text-sm font-semibold italic text-center">
-                Table I: Quantitative Characteristics and Partitioning of the GazeMed Datasets [cite: 251]
+                Table I: Statistical Profiles and Data Partitioning of the GazeMed Benchmarks
             </div>
             <table class="w-full text-left text-sm border-collapse">
                 <thead class="bg-slate-100 text-slate-700 border-b">
                     <tr>
-                        <th class="px-6 py-4 font-bold">Clinical Parameter</th>
+                        <th class="px-6 py-4 font-bold">Evaluation Parameter</th>
                         <th class="px-6 py-4 font-bold">Endoscopic Polyp Task</th>
                         <th class="px-6 py-4 font-bold">Cerebral Tumor (MRI) Task</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y text-gray-600">
                     <tr class="hover:bg-gray-50">
-                        <td class="px-6 py-3 font-semibold bg-gray-50/50">Imaging Modality</td>
+                        <td class="px-6 py-3 font-semibold bg-gray-50/50">Clinical Modality</td>
                         <td class="px-6 py-3">White-Light Endoscopy [cite: 250]</td>
                         <td class="px-6 py-3">T1-weighted CE-MRI [cite: 250]</td>
                     </tr>
                     <tr class="hover:bg-gray-50">
-                        <td class="px-6 py-3 font-semibold bg-gray-50/50">Aggregate Samples (N)</td>
+                        <td class="px-6 py-3 font-semibold bg-gray-50/50">Total Sample Size (N)</td>
                         <td class="px-6 py-3">3,784 [cite: 250]</td>
                         <td class="px-6 py-3">3,064 [cite: 250]</td>
                     </tr>
                     <tr class="hover:bg-gray-50">
-                        <td class="px-6 py-3 font-semibold bg-gray-50/50">Supervisory Signal</td>
-                        <td class="px-6 py-3">Expert Gaze Trajectories [cite: 250]</td>
-                        <td class="px-6 py-3">Expert Gaze Trajectories [cite: 250]</td>
+                        <td class="px-6 py-3 font-semibold bg-gray-50/50">Weak Supervisory Signal</td>
+                        <td class="px-6 py-3">Passive Expert Gaze Points [cite: 250]</td>
+                        <td class="px-6 py-3">Passive Expert Gaze Points [cite: 250]</td>
                     </tr>
                     <tr class="hover:bg-gray-50">
-                        <td class="px-6 py-3 font-semibold bg-gray-50/50">Pre-processing Size</td>
-                        <td class="px-6 py-3">$384 \times 384$ [cite: 250]</td>
-                        <td class="px-6 py-3">$384 \times 384$ [cite: 250]</td>
+                        <td class="px-6 py-3 font-semibold bg-gray-50/50">Input Dimension</td>
+                        <td class="px-6 py-3">384 × 384 [cite: 250]</td>
+                        <td class="px-6 py-3">384 × 384 [cite: 250]</td>
                     </tr>
                     <tr class="hover:bg-gray-50">
-                        <td class="px-6 py-3 font-semibold bg-gray-50/50">Split (Train/Val/Test)</td>
+                        <td class="px-6 py-3 font-semibold bg-gray-50/50">Partition (Train/Val/Test)</td>
                         <td class="px-6 py-3">3,027 / 378 / 379 [cite: 250]</td>
                         <td class="px-6 py-3">2,452 / 306 / 306 [cite: 250]</td>
                     </tr>
@@ -54,26 +54,26 @@
     </div>
 
     <div class="mb-12">
-        <h4 class="text-xl font-bold text-blue-700 mb-4">4.2 Perception-Driven Data Acquisition</h4>
+        <h4 class="text-xl font-bold text-blue-700 mb-4">4.2 Ocular Tracking and Quality Control Framework</h4>
         <div class="grid md:grid-cols-2 gap-8">
-            <div class="space-y-4 text-gray-700 text-sm">
+            <div class="space-y-4 text-gray-700 text-sm leading-relaxed">
                 <p>
-                    We established a non-intrusive framework to capture clinician visual attention during routine diagnostic inspections[cite: 278, 279]. 
-                    This method bypasses the logistical burden of explicit manual pixel-wise labeling by recording expert search patterns passively[cite: 279].
+                    We developed a non-intrusive acquisition framework to capture expert visual attention during routine image interpretation[cite: 278, 279]. 
+                    This strategy replaces labor-intensive manual delineation with passive recording of diagnostic search patterns[cite: 279].
                 </p>
                 <p>
-                    <b>Expert Engagement:</b> Four board-certified medical practitioners participated in the recording process[cite: 280]. 
-                    To minimize idiosyncratic bias, we utilized a two-stage cross-validation protocol [cite: 301, 303]: each clinician first performed an independent review, followed by a mutual audit to ensure attentional consistency across lesion boundaries[cite: 302, 304].
+                    <b>Clinical Protocol:</b> Four board-certified practitioners participated in the study[cite: 280]. 
+                    To ensure reliability, we employed a two-stage validation protocol involving independent reviews followed by a cross-expert audit to verify focus on lesion-relevant structures[cite: 301, 303, 304].
                 </p>
             </div>
-            <div class="space-y-4 text-gray-700 text-sm">
+            <div class="space-y-4 text-gray-700 text-sm leading-relaxed">
                 <p>
-                    <b>Technical Specifications:</b> Tracking was facilitated by an HTC VIVE Pro Eye system integrated within a Unity-based VR environment[cite: 306, 307]. 
-                    A multi-point calibration procedure was performed before each session to maintain sub-pixel localization accuracy[cite: 308].
+                    <b>Technical Specifications:</b> Gaze data was acquired using an HTC VIVE Pro Eye system integrated within a Unity VR environment[cite: 306, 307]. 
+                    Calibration was performed before each session to ensure high-fidelity localization[cite: 308].
                 </p>
                 <p>
-                    Recording was conducted at a high-frequency sampling rate of <b>100 Hz</b>. 
-                    Each image was presented for <b>2.0 seconds</b>, yielding approximately 100-200 raw coordinate points per sample, which were then mapped to the standard image plane[cite: 310, 311].
+                    The sampling rate was maintained at <b>100 Hz</b>[cite: 309]. 
+                    Images were presented for a fixed duration of <b>2.0 seconds</b>, resulting in approximately 100-200 raw gaze coordinates per sample[cite: 310].
                 </p>
             </div>
         </div>
@@ -82,27 +82,27 @@
     <div class="bg-slate-900 rounded-2xl p-8 shadow-2xl border-l-8 border-blue-500 overflow-hidden">
         <div class="flex items-center justify-between mb-6 border-b border-slate-700 pb-4">
             <h5 class="text-blue-400 font-mono text-lg font-bold italic">Algorithm 1: Standardized Data Construction Workflow [cite: 335]</h5>
-            <span class="bg-blue-900/50 text-blue-300 px-3 py-1 rounded-full text-xs uppercase tracking-widest border border-blue-800">Curation Logic</span>
+            <span class="bg-blue-900/50 text-blue-300 px-3 py-1 rounded-full text-xs uppercase tracking-widest border border-blue-800 font-sans">Logic Pipeline</span>
         </div>
         <div class="font-mono text-xs md:text-sm space-y-2 text-slate-300 leading-relaxed">
-            <p><span class="text-pink-400">INPUT:</span> Medical Image Set $\mathcal{I}$, Sampling Frequency $f$, Interval $T$ [cite: 336, 337]</p>
-            <p><span class="text-pink-400">OUTPUT:</span> Harmonized Gaze Dataset $\mathcal{S}$ [cite: 337, 369]</p>
+            <p><span class="text-pink-400">INPUT:</span> Medical Image Set I, Frequency f, Duration T [cite: 336, 337]</p>
+            <p><span class="text-pink-400">OUTPUT:</span> Harmonized Gaze Benchmark S [cite: 337, 369]</p>
             <div class="pl-4 border-l-2 border-slate-800 mt-4 space-y-1">
-                <p class="text-blue-400">FOR each $\text{Image}_k$ IN $\mathcal{I}$ DO: [cite: 339]</p>
-                <p class="pl-6 text-slate-500">// Initialize hardware and VR display [cite: 341]</p>
-                <p class="pl-6">1. Render $\text{Image}_k$ to VR environment</p>
-                <p class="pl-6">2. Verify Eye-tracker synchronization [cite: 355]</p>
-                <p class="pl-6">3. Initialize Sequence $\mathcal{P}_k \leftarrow \emptyset$ [cite: 345]</p>
-                <p class="pl-6 text-blue-400">WHILE $\text{elapsed} < T$ DO: [cite: 346]</p>
-                <p class="pl-12">$\text{coord} \leftarrow \text{CaptureExpertGaze()}$ [cite: 357]</p>
-                <p class="pl-12">IF $\text{is\_valid}(\text{coord})$ THEN: [cite: 359]</p>
-                <p class="pl-18">$\mathcal{P}_k \leftarrow \mathcal{P}_k \cup \{\text{coord}\}$ [cite: 360]</p>
-                <p class="pl-12">$\text{elapsed} \leftarrow \text{elapsed} + (1/f)$ [cite: 362]</p>
+                <p class="text-blue-400 italic"># Begin iterative data collection [cite: 339]</p>
+                <p class="text-blue-400">FOR each Image(k) IN Set I DO:</p>
+                <p class="pl-6">1. Present Image(k) via VR Interface [cite: 341]</p>
+                <p class="pl-6">2. Synchronize Eye-tracker signal [cite: 355]</p>
+                <p class="pl-6">3. Initialize Sequence P(k) &larr; {Empty} [cite: 345]</p>
+                <p class="pl-6 text-blue-400">WHILE elapsed_time &lt; T DO: [cite: 346]</p>
+                <p class="pl-12">coord &larr; CaptureExpertGaze() [cite: 357]</p>
+                <p class="pl-12">IF coord IS valid THEN: [cite: 359]</p>
+                <p class="pl-18">P(k) &larr; P(k) &cup; {coord} [cite: 360]</p>
+                <p class="pl-12">elapsed_time &larr; elapsed_time + (1/f) [cite: 362]</p>
                 <p class="pl-6 text-blue-400">END WHILE</p>
-                <p class="pl-6">4. $\mathcal{P}_k^{std} \leftarrow \text{NormalizeToStandardResolution}(\mathcal{P}_k)$ [cite: 363, 364]</p>
-                <p class="pl-6">5. Store $\mathcal{P}_k^{std}$ to Local Repository [cite: 365]</p>
+                <p class="pl-6">4. P_std(k) &larr; MapToStandardResolution(P(k)) [cite: 363, 364]</p>
+                <p class="pl-6">5. Commit P_std(k) to Repository [cite: 365]</p>
                 <p class="text-blue-400">END FOR</p>
-                <p class="mt-4 text-emerald-400">RETURN Benchmark $\mathcal{S} \leftarrow \text{CompileSequences}(\{\mathcal{P}_k^{std}\})$ [cite: 367]</p>
+                <p class="mt-4 text-emerald-400">RETURN Benchmark S &larr; CompileAll(P_std) [cite: 367, 369]</p>
             </div>
         </div>
     </div>
